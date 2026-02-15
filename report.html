@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Item - Smart System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="toast-container"></div>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <h1 class="navbar-title"><i class="fas fa-clipboard"></i> Report Item</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <button type="button" class="btn-theme-toggle" id="themeToggle" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button type="button" onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Report an Item</h2>
+            <p>Report a lost or found item to help the community</p>
+        </div>
+        
+        <div class="section" style="max-width: 600px; margin: 0 auto;">
+            <div id="message"></div>
+            <form id="itemForm">
+                <div class="form-group">
+                    <label for="type"><i class="fas fa-tag"></i> Type <span>*</span></label>
+                    <select id="type" name="type" required>
+                        <option value="">Select Type</option>
+                        <option value="lost"><i class="fas fa-heart-broken"></i> Lost</option>
+                        <option value="found"><i class="fas fa-gift"></i> Found</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Your Name <span>*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemName"><i class="fas fa-box"></i> Item Name <span>*</span></label>
+                    <input type="text" id="itemName" name="itemName" placeholder="e.g., Black Wallet, iPhone 13" required>
+                </div>
+                <div class="form-group">
+                    <label for="description"><i class="fas fa-align-left"></i> Description</label>
+                    <textarea id="description" name="description" placeholder="Provide details about the item, color, brand, distinguishing marks..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="location"><i class="fas fa-map-marker-alt"></i> Location <span>*</span></label>
+                    <input type="text" id="location" name="location" placeholder="Where was it lost or found? (e.g., City Hall Plaza)" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact"><i class="fas fa-phone"></i> Contact Information <span>*</span></label>
+                    <input type="text" id="contact" name="contact" placeholder="Email or Phone number" required>
+                </div>
+                <button type="submit"><i class="fas fa-check-circle"></i> Report Item</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
